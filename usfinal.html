@@ -1,0 +1,93 @@
+<html>
+    <head>
+            <script src="./index.js"></script>
+    </head>
+<body>
+
+    <div id="body" style="background-color:pink;">
+
+      <form name= "my_form">
+          <br><br>
+          <span id="name_label" style="background-color:yellow">Student Name</span> <input type="text" name="student_name" id="student_name" style="background-color:yellow;"> <br><br>
+          <span id="age_label" style="background-color:yellow;">Age</span><input type="text" name="student_age" id="student_age" style="background-color:yellow;"><br><br>
+          Gender <input type="radio" value="M" name="gender" checked="checked">M
+          <input type="radio" value="F" name="gender">F
+          <br><br>
+
+          City  <select id="city" name="city">
+              <option value="">select</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Kolkata">Kolkata</option>
+              <option value="Chennai">Chennai</option>
+          </select><br><br>
+
+          Hobby   <input type="checkbox" id="painting" name="painting">Painting
+           <input type="checkbox" id="dancing" name="dancing">Dancing
+           <input type="checkbox" id="sports" name="sports">Sports
+
+                  <br><br>
+
+         <button type="submit" id="student_submit" onclick=validateName()>submit</button>
+
+      </form>
+
+      <div>
+            Name:<span id="name_value"></span><br>
+            Age:<span id="age_value"></span><br>
+            City:<span id="city_value"></span><br>
+            Hobbies:<span id="hobbies_value"></span><br>
+
+
+      </div>
+    </div>
+
+</body>
+</html>
+function validateName()
+{
+    var alpha = /^[a-zA-Z ]+$/;
+  var count = 0;
+    var name = document.getElementById('student_name').value;
+    if(name.length <= 20 && (name.match(alpha)))
+    {
+      document.getElementById('name_value').innerHTML = name;
+    }
+    else
+    {
+      document.getElementById('name_value').innerHTML = 'invalid';
+    }
+  var numbers = /^[0-9]+$/;
+ var age = document.getElementById('student_age').value;
+  if(age <= 100 && age.match(numbers))
+  {
+     document.getElementById('age_value').innerHTML = age;
+  }
+  else
+  {
+    document.getElementById('age_value').innerHTML = 'invalid';
+  }
+  var city = document.getElementById('city').value;
+  if(city != '')
+   document.getElementById('city_value').innerHTML = city;
+  else{
+   document.getElementById('city_value').innerHTML = 'invalid';
+  }
+  var input = document.getElementsByTagName('input');
+  var txt='';
+  var count = 0;
+  for (var i = 0; i < input.length; i++)
+  {
+  if(input[i].type == 'checkbox' && input[i].checked == true)
+  {
+    txt +='#'+ input[i].name;
+    count++;
+  }
+  }
+  if(count == 0){
+      document.getElementById('hobbies_value').innerHTML = txt + 'invalid';
+  }
+  else{
+    document.getElementById('hobbies_value').innerHTML = txt;
+  }
+}
